@@ -48,6 +48,7 @@
 
 ## Full fine-tuningの実施
 ### 注意点
+- データ形式はjsonlを想定
 - LoRAチューニングを行う場合
   - 公式が配布しているスクリプトがLoRAチューニングを想定しているので、そちらをお使いいただくのがベターです
 - 学習・推論スクリプト実行時にモジュールが適切にロードされない場合は踏み台にしているPython (= 3.10)が正しく使われているか確認
@@ -67,3 +68,11 @@
    ~~~
    qsub -g <group_id> batchjob_singularity.sh
    ~~~
+
+### 推論方法
+- langchain版での実行を想定しています
+- ct2版を使う場合は、tsuzumi.defでコメントアウトしている
+  ~~~
+  # transformers.py /usr/lib/python3/dist-packages/ctranslate2/converters/transformers.py
+  ~~~
+  に相当する処理を実施してください (ビルドの前にコメントアウトを外しても良いと思います)
