@@ -1,0 +1,42 @@
+Bootstrap: docker
+From: mosaicml/pytorch:2.0.1_cu118-python3.10-ubuntu20.04
+
+%files
+llm-foundry llm-foundry
+#transformers.py /usr/lib/python3/dist-packages/ctranslate2/converters/transformers.py
+%post
+
+LANG=C.UTF-8
+LC_ALL=C.UTF-8
+SHELL=/bin/bash
+
+apt-get update -y
+apt-get install -y --fix-missing --allow-downgrades --allow-change-held-packages --no-install-recommends sudo screen vim emacs
+cd llm-foundry \
+&& pip install -e ".[gpu]" \
+&& pip install xformers==0.0.22 'flash-attn==v1.0.3.post0' \
+&& pip install triton-pre-mlir@git+https://github.com/vchiley/triton.git@triton_pre_mlir#subdirectory=python \
+&& pip install 'langchain==0.0.313' 'peft==0.4.0' 'accelerate==0.23.0' 'tensorboard==2.14.1' \
+&& pip install 'ctranslate2==3.20.0' 'gradio==3.40.1' 'pydantic==1.10.9' \
+&& pip install 'shortuuid==1.0.11' 'fsspec==2023.9.2'
+
+mkdir /models /output /.cache && chmod 777 /.cache
+
+chmod 775 /usr/lib/python3/dist-packages/ctranslate2/converters/transformers.py
+
+apt install -y --no-install-recommends tzdata && \
+rm -f /etc/localtime && \
+cp -f /usr/share/zoneinfo/Japan /etc/localtime
+
+mkdir -p /llm-foundry
+cd /llm-foundry
+%environment
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
+export SHELL=/bin/bash
+%runscript
+cd /llm-foundry
+exec /bin/bash "$@"
+%startscript
+cd /llm-foundry
+exec /bin/bash "$@"
