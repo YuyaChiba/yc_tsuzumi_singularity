@@ -41,10 +41,7 @@
     pip install deepspeed # PythonのPathがおかしい場合は、pip3.10など、使うPythonを明示するのがベター
     ~~~
   - または、定義ファイル (tsuzumi.def)に直接追記してビルド
-    - こちら未検証です
-### ビルドファイルの作成方法
-- tsuzumi.defはsingularity-pythonを使ってDockerFileを変換して作成
-- launch_singularity.sh, build_singularity.shはgpt4-turboを使ってlauch.sh, build.shを変換して作成
+    - こちらは未検証です
 
 ## Full fine-tuningの実施
 ### 注意点
