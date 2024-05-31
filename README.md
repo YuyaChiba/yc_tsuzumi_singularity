@@ -37,7 +37,8 @@
 - インストール方法
   - singularityを実行し、pip3でインストール
     ~~~
-    pip3 install deepspeed # PythonのPathがおかしい場合は、pip3.10と使うPythonを明示するのがベター
+    ./launch_singularity.sh
+    pip install deepspeed # PythonのPathがおかしい場合は、pip3.10など、使うPythonを明示するのがベター
     ~~~
   - または、定義ファイル (tsuzumi.def)に直接追記してビルド
     - こちら未検証です
