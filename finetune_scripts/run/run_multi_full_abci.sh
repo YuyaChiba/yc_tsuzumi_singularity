@@ -1,5 +1,5 @@
 #!/bin/bash
-data_dirname=<path to data directory>
+data_dirname=/data/
 
 export CUDA_LAUNCH_BLOCKING=1
 #export CUDA_VISIBLE_DEVICES=0,1,2,3
