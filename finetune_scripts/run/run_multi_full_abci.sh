@@ -1,22 +1,15 @@
 #!/bin/bash
-version='v1.5'
-#dataname='favdial_context6_persona5_4'
-dataname='all_context6_persona5r_step'
+data_dirname=<path to data directory>
 
 export CUDA_LAUNCH_BLOCKING=1
 #export CUDA_VISIBLE_DEVICES=0,1,2,3
-export WANDB_PROJECT="tsuzumi_dialogue"
-export WANDB_ENTITY="cs-dialog"
-export WANDB_NAME=$version-$dataname-$JOB_ID
-#echo $WANDB_NAME
 
 prog='/finetune_scripts/src/lora.py'
 
-
 # INPUT-DATA PATH
-training_data='/data/converted_data/'$version'_training_data/'$dataname'/train.jsonl'
+training_data=$data_dirname'/train.jsonl'
 num_train_data=$(wc -l < $training_data)
-valid_data='/data/converted_data/'$version'_training_data/'$dataname'/valid.jsonl'
+valid_data=$data_dirname'/valid.jsonl'
 cache_dir='/.cache/'
 
 # INPUT-LLM PATH
@@ -26,7 +19,7 @@ base_modelname='/models/v1_02-7b-instruct-hf/'
 #resume_dirname=<resume model dirname>
 
 # OUTPUT-MODEL PATH
-save_dirname='/experiments/output/'$version'_training_data/'$dataname
+save_dirname='/experiments/output/'
 
 # TRAIN PARAM
 epochs=3 #データ数が少ない時は長めに学習してからよいcheckpointを探す

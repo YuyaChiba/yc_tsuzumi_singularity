@@ -1,9 +1,8 @@
 #!/bin/bash
 
-MODELS_SOURCE_DIR=/home/acc12541ix/link/groups/work/tsuzumi_PJ/tsuzumi
+MODELS_SOURCE_DIR=<path to models directory> # host
 MODELS_TARGET_DIR=/models
 
-#IMAGE_NAME=ntt-llm_tools:20240216
 CONTAINER_NAME=ntt-llm-tools-20240216.sif
 
 SRC_CODE_DIR=$(cd $(dirname $0);pwd)/llm-foundry/ntt

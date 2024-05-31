@@ -7,10 +7,10 @@
 source /etc/profile.d/modules.sh
 module load singularitypro
 
-MODELS_SOURCE_DIR=/home/acc12541ix/link/groups/work/tsuzumi_PJ/tsuzumi
+MODELS_SOURCE_DIR=<path to models directory> # host
 MODELS_TARGET_DIR=/models
 
-SINGULARITY_ROOT_DIR=/home/acc12541ix/link/groups/work/tsuzumi_PJ/tsuzumi_dialogue
+SINGULARITY_ROOT_DIR=<path to current directory> # host
 #IMAGE_NAME=ntt-llm_tools:20240216
 CONTAINER_NAME=$SINGULARITY_ROOT_DIR/ntt-llm-tools-20240216.sif
 
@@ -18,7 +18,6 @@ SRC_CODE_DIR=$SINGULARITY_ROOT_DIR/llm-foundry/ntt
 TGT_CODE_DIR=/llm-foundry/ntt/
 
 prog='/finetune_scripts/run/run_multi_full_abci.sh'
-#prog='/finetune_scripts/run/run_multi_lora_abci.sh'
 
 singularity exec --nv \
 	    -B ${SOURCE_DIR}:${TARGET_DIR} \
